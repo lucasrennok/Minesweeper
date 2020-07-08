@@ -4,7 +4,7 @@
 //#include <unistd.h>
 #include <stdbool.h>
 #include <math.h>
-
+//
 typedef struct pontoMatriz{
 	bool mina;
 	bool aberto;
