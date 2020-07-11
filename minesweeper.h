@@ -14,6 +14,16 @@ typedef struct pontoMatriz{
 	int minas_ao_redor;
 } pMatriz;
 
+bool campoResolvido(pMatriz** matriz, int x, int y);
+void configuracao(int* x, int* y, int* bombas);
+pMatriz** alocacao(int x, int y);
+void gerarCampo(pMatriz** matriz, int x, int y, int bombas);
+void printaCampo(pMatriz** matriz, int x, int y, int finalizado, float tempo, int bombas);
+int bombasRestantesBandeira(pMatriz** matriz, int x, int y, int bombas);
+int decisaoJogador(pMatriz** matriz, int x, int y, int bombas);
+void limpaZerosArea(pMatriz** matriz, int x, int y, int linha, int coluna);
+void desalocacao(pMatriz** matriz, int x);
+
 void configuracao(int* x, int* y, int* bombas){
 	int dificuldade;
 	printf("Qual a dificuldade do campo minado?\n\n1-Facil\n2-Intermediario\n3-Dificil\nESCOLHA: ");
