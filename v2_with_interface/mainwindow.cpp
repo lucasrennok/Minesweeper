@@ -19,8 +19,12 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     ui->groupBoxConfig->hide();
     ui->groupBoxConfig->setDisabled(true);
-    ui->groupBoxGame->hide();
-    ui->groupBoxGame->setDisabled(true);
+    ui->groupBoxGameB->hide();
+    ui->groupBoxGameB->setDisabled(true);
+    ui->groupBoxGameI->hide();
+    ui->groupBoxGameI->setDisabled(true);
+    ui->groupBoxGameE->hide();
+    ui->groupBoxGameE->setDisabled(true);
 }
 
 MainWindow::~MainWindow()
@@ -42,6 +46,19 @@ void MainWindow::on_actionMultiplayer_triggered()
         cout << "Created game" << endl;
     }
 
+    printaCampo(matrix, m_x, m_y, 1, 1, mines);
+
+    if(dif==1){
+        ui->groupBoxGameB->show();
+        ui->groupBoxGameB->setDisabled(false);
+    }else if(dif==2){
+        ui->groupBoxGameI->show();
+        ui->groupBoxGameI->setDisabled(false);
+    }else{
+        ui->groupBoxGameE->show();
+        ui->groupBoxGameE->setDisabled(false);
+    }
+
     cout << "-Multiplayer Mode-" << endl;
     ui->groupBoxConfig->hide();
     ui->groupBoxConfig->setDisabled(true);
@@ -49,9 +66,16 @@ void MainWindow::on_actionMultiplayer_triggered()
 
 void MainWindow::on_actionSingleplayer_triggered()
 {
+    printaCampo(matrix, m_x, m_y, 1, 1, mines);
     if(dif==1){
-        ui->groupBoxGame->show();
-        ui->groupBoxGame->setDisabled(false);
+        ui->groupBoxGameB->show();
+        ui->groupBoxGameB->setDisabled(false);
+    }else if(dif==2){
+        ui->groupBoxGameI->show();
+        ui->groupBoxGameI->setDisabled(false);
+    }else{
+        ui->groupBoxGameE->show();
+        ui->groupBoxGameE->setDisabled(false);
     }
     cout << "-Singleplayer Mode-" << endl;
     ui->groupBoxConfig->hide();
@@ -60,8 +84,16 @@ void MainWindow::on_actionSingleplayer_triggered()
 
 void MainWindow::on_actionConfiguration_triggered()
 {
-    ui->groupBoxGame->hide();
-    ui->groupBoxGame->setDisabled(true);
+    if(dif==1){
+        ui->groupBoxGameB->hide();
+        ui->groupBoxGameB->setDisabled(true);
+    }else if(dif==2){
+        ui->groupBoxGameI->hide();
+        ui->groupBoxGameI->setDisabled(true);
+    }else{
+        ui->groupBoxGameE->hide();
+        ui->groupBoxGameE->setDisabled(true);
+    }
     cout << "-Configuration Triggered-" << endl;
     ui->groupBoxConfig->show();
     ui->groupBoxConfig->setDisabled(false);
@@ -113,3 +145,4 @@ void MainWindow::on_radioConnect_clicked()
     bool_connect = true;
     bool_create = false;
 }
+

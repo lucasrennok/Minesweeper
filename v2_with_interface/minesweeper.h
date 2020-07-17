@@ -144,13 +144,10 @@ int bombasRestantesBandeira(pMatriz** matriz, int x, int y, int bombas){
     return bombas;
 }
 
-int decisaoJogador(pMatriz** matriz, int x, int y, int bombas){
-    int linha, coluna, escolha;
-    printf("--> Qual coordenada do Campo Minado(%dx%d)?\nESCOLHA: ", x, y);
-    scanf("%d %d", &linha, &coluna);
+int decisaoJogador(pMatriz** matriz, int x, int y, int bombas, int linha, int coluna, int escolha){
+    printf("Coordenadas escolhidas: %dx%d\n", linha, coluna);
     if(linha>=0 && linha<x && coluna>=0 && coluna<y){
-        printf("1-Liberar Espaco\n2-Marcar Bandeira\n");
-        scanf("%d", &escolha);
+        printf("1-Liberar Espaco\n2-Marcar Bandeira\nESCOLHA: %d\n", escolha);
         if(escolha==2){
             if(bombasRestantesBandeira(matriz,x,y,bombas)==0){
                 printf("\n!__!MAXIMO DE BANDEIRAS JA ATINGIDO!__!\n");
@@ -225,6 +222,15 @@ void desalocacao(pMatriz** matriz, int x){
     }
     free(matriz);
     printf("Desalocado com sucesso.\n");
+}
+
+char getValueBut(pMatriz** matriz, int x, int y){
+    char num[2];
+    if(matriz[x][y].mina==true)
+        num[0] = '*';
+    else
+        num[0] = '0'+matriz[x][y].minas_ao_redor;
+    return num[0];
 }
 
 #endif // MINESWEEPER_H
