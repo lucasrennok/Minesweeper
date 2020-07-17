@@ -172,10 +172,10 @@ p, li { white-space: pre-wrap; }
    <widget class="QGroupBox" name="groupBoxGameB">
     <property name="geometry">
      <rect>
-      <x>440</x>
-      <y>40</y>
-      <width>321</width>
-      <height>491</height>
+      <x>10</x>
+      <y>20</y>
+      <width>741</width>
+      <height>511</height>
      </rect>
     </property>
     <property name="title">
@@ -186,7 +186,7 @@ p, li { white-space: pre-wrap; }
       <rect>
        <x>10</x>
        <y>20</y>
-       <width>301</width>
+       <width>701</width>
        <height>261</height>
       </rect>
      </property>
@@ -267,6 +267,19 @@ p, li { white-space: pre-wrap; }
      </property>
      <property name="text">
       <string>Result: </string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="labelMulti">
+     <property name="geometry">
+      <rect>
+       <x>350</x>
+       <y>320</y>
+       <width>111</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Multiplayer: Nothing</string>
      </property>
     </widget>
    </widget>
