@@ -46,6 +46,7 @@ void MainWindow::on_actionMultiplayer_triggered()
 
     ui->groupBoxGameB->show();
     ui->groupBoxGameB->setDisabled(false);
+    ui->labelMulti->show();
 
     cout << "-Multiplayer Mode-" << endl;
     ui->groupBoxConfig->hide();
@@ -58,6 +59,7 @@ void MainWindow::on_actionSingleplayer_triggered()
 
     ui->groupBoxGameB->show();
     ui->groupBoxGameB->setDisabled(false);
+    ui->labelMulti->hide();
 
     cout << "-Singleplayer Mode-" << endl;
     ui->groupBoxConfig->hide();
@@ -133,6 +135,7 @@ void MainWindow::on_radioFlag_clicked()
 
 void MainWindow::on_pushButton_clicked()
 {
+    ui->labelResult->setText("Result:");
     string x = ui->textX->toPlainText().toStdString();
     string y = ui->textY->toPlainText().toStdString();
     if(x=="" || y==""){
@@ -153,6 +156,9 @@ void MainWindow::on_pushButton_clicked()
 
     if(campoResolvido(matrix, m_x,m_y)){
         ui->labelResult->setText("Result: Won");
+        campo = printaCampo_str(matrix, m_x,m_y,1,mines);
+        game_campo = QString::fromStdString(campo);
+        ui->textGame->setText(game_campo);
         if(dif==1){
             on_radioBeginner_clicked();
         }else if(dif==2){
@@ -160,11 +166,11 @@ void MainWindow::on_pushButton_clicked()
         }else if(dif==3){
             on_radioExpert_clicked();
         }
-        campo = printaCampo_str(matrix, m_x,m_y,1,mines);
-        game_campo = QString::fromStdString(campo);
-        ui->textGame->setText(game_campo);
     }else if(matrix[c_x][c_y].mina==true){
         ui->labelResult->setText("Result: Lost");
+        campo = printaCampo_str(matrix, m_x,m_y,1,mines);
+        game_campo = QString::fromStdString(campo);
+        ui->textGame->setText(game_campo);
         if(dif==1){
             on_radioBeginner_clicked();
         }else if(dif==2){
@@ -172,9 +178,6 @@ void MainWindow::on_pushButton_clicked()
         }else if(dif==3){
             on_radioExpert_clicked();
         }
-        campo = printaCampo_str(matrix, m_x,m_y,1,mines);
-        game_campo = QString::fromStdString(campo);
-        ui->textGame->setText(game_campo);
     }
 
 }
