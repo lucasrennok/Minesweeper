@@ -1,11 +1,15 @@
-#ifndef MINESWEEPER_H
-#define MINESWEEPER_H
+#ifndef MINESWEEPER_HPP
+#define MINESWEEPER_HPP
 
 #include <stdio.h>
-#include <stdlib.h>
 #include <stdbool.h>
-#include <math.h>
+#include <stdlib.h>
 #include <time.h>
+#include <string.h>
+#include <iostream>
+#include <string>
+
+using namespace std;
 
 typedef struct pontoMatriz{
     bool mina;
@@ -133,6 +137,49 @@ void printaCampo(pMatriz** matriz, int x, int y, int finalizado, float tempo, in
     printf("\n");
 }
 
+string printaCampo_str(pMatriz** matriz, int x, int y, int finalizado, int bombas){
+    int bombas_restantes = bombasRestantesBandeira(matriz, x, y, bombas);
+    string str = "CAMPO MINADO - Bombas Restantes: "+toString(bombas_restantes);
+    str+="\n";
+    for(int j=0; j<y; j++){
+        if(j<10)
+            str+=" 0"+ toString(j);
+        else
+            str+=" "+ toString(j);
+    }
+    str+="\n";
+    for(int i=0; i<x; i++){
+        if(i<10){
+            str+="0"+toString(i);
+            str+="|";
+        }
+        else
+            str+=toString(i)+"|";
+        for(int j=0; j<y; j++){
+            if(matriz[i][j].aberto==true || finalizado>0){
+                if(matriz[i][j].mina==false)
+                    if(matriz[i][j].minas_ao_redor!=-1){
+                        str+=" "+ toString(matriz[i][j].minas_ao_redor);
+                        str+=" ";
+                    }
+                    else
+                    str+=" 0 ";
+                else
+                    str+=" * ";
+            }
+            else if(matriz[i][j].bandeira==true){
+                str+=" B ";
+            }
+            else
+                str+=" # ";
+        }
+        str+="\n";
+    }
+    str+="\n";
+    cout << str << endl;
+    return str;
+}
+
 int bombasRestantesBandeira(pMatriz** matriz, int x, int y, int bombas){
     for(int i=0; i<x; i++){
         for(int j=0; j<y; j++){
@@ -224,4 +271,4 @@ void desalocacao(pMatriz** matriz, int x){
     printf("Desalocado com sucesso.\n");
 }
 
-#endif // MINESWEEPER_H
+#endif // MINESWEEPER_HPP
