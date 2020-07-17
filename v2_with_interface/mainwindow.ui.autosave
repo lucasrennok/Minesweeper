@@ -172,8 +172,8 @@ p, li { white-space: pre-wrap; }
    <widget class="QGroupBox" name="groupBoxGame">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>20</y>
+      <x>430</x>
+      <y>30</y>
       <width>321</width>
       <height>291</height>
      </rect>
