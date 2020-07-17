@@ -139,27 +139,27 @@ void printaCampo(pMatriz** matriz, int x, int y, int finalizado, float tempo, in
 
 string printaCampo_str(pMatriz** matriz, int x, int y, int finalizado, int bombas){
     int bombas_restantes = bombasRestantesBandeira(matriz, x, y, bombas);
-    string str = "CAMPO MINADO - Bombas Restantes: "+toString(bombas_restantes);
-    str+="\n";
+    string str = "CAMPO MINADO - Bombas Restantes: "+to_string(bombas_restantes);
+    str+="\n__";
     for(int j=0; j<y; j++){
         if(j<10)
-            str+=" 0"+ toString(j);
+            str+=" 0"+ to_string(j);
         else
-            str+=" "+ toString(j);
+            str+=" "+ to_string(j);
     }
     str+="\n";
     for(int i=0; i<x; i++){
         if(i<10){
-            str+="0"+toString(i);
+            str+="0"+to_string(i);
             str+="|";
         }
         else
-            str+=toString(i)+"|";
+            str+=to_string(i)+"|";
         for(int j=0; j<y; j++){
             if(matriz[i][j].aberto==true || finalizado>0){
                 if(matriz[i][j].mina==false)
                     if(matriz[i][j].minas_ao_redor!=-1){
-                        str+=" "+ toString(matriz[i][j].minas_ao_redor);
+                        str+=" "+ to_string(matriz[i][j].minas_ao_redor);
                         str+=" ";
                     }
                     else
@@ -194,7 +194,7 @@ int bombasRestantesBandeira(pMatriz** matriz, int x, int y, int bombas){
 int decisaoJogador(pMatriz** matriz, int x, int y, int bombas, int linha, int coluna, int escolha){
     printf("Coordenadas escolhidas: %dx%d\n", linha, coluna);
     if(linha>=0 && linha<x && coluna>=0 && coluna<y){
-        printf("1-Liberar Espaco\n2-Marcar Bandeira\nESCOLHA: %d\n", escolha);
+        printf("ESCOLHA: %d\n", escolha);
         if(escolha==2){
             if(bombasRestantesBandeira(matriz,x,y,bombas)==0){
                 printf("\n!__!MAXIMO DE BANDEIRAS JA ATINGIDO!__!\n");

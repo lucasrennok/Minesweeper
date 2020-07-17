@@ -150,4 +150,31 @@ void MainWindow::on_pushButton_clicked()
     string campo = printaCampo_str(matrix, m_x,m_y,0,mines);
     QString game_campo = QString::fromStdString(campo);
     ui->textGame->setText(game_campo);
+
+    if(campoResolvido(matrix, m_x,m_y)){
+        ui->labelResult->setText("Result: Won");
+        if(dif==1){
+            on_radioBeginner_clicked();
+        }else if(dif==2){
+            on_radioIntermediate_clicked();
+        }else if(dif==3){
+            on_radioExpert_clicked();
+        }
+        campo = printaCampo_str(matrix, m_x,m_y,1,mines);
+        game_campo = QString::fromStdString(campo);
+        ui->textGame->setText(game_campo);
+    }else if(matrix[c_x][c_y].mina==true){
+        ui->labelResult->setText("Result: Lost");
+        if(dif==1){
+            on_radioBeginner_clicked();
+        }else if(dif==2){
+            on_radioIntermediate_clicked();
+        }else if(dif==3){
+            on_radioExpert_clicked();
+        }
+        campo = printaCampo_str(matrix, m_x,m_y,1,mines);
+        game_campo = QString::fromStdString(campo);
+        ui->textGame->setText(game_campo);
+    }
+
 }
