@@ -175,7 +175,7 @@ p, li { white-space: pre-wrap; }
       <x>440</x>
       <y>40</y>
       <width>321</width>
-      <height>411</height>
+      <height>491</height>
      </rect>
     </property>
     <property name="title">
@@ -197,7 +197,7 @@ p, li { white-space: pre-wrap; }
        <x>20</x>
        <y>300</y>
        <width>281</width>
-       <height>101</height>
+       <height>150</height>
       </rect>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -255,6 +255,19 @@ p, li { white-space: pre-wrap; }
        </widget>
       </item>
      </layout>
+    </widget>
+    <widget class="QLabel" name="labelResult">
+     <property name="geometry">
+      <rect>
+       <x>50</x>
+       <y>460</y>
+       <width>221</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Result: </string>
+     </property>
     </widget>
    </widget>
   </widget>
