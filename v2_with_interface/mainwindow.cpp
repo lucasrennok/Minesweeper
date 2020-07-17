@@ -1,13 +1,13 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "minesweeper.h"
+#include "minesweeper.hpp"
 #include <stdbool.h>
 #include <iostream>
 
 using namespace std;
 
 int dif = 1;
-bool bool_connect=false, bool_create=false;
+bool bool_connect=false, bool_create=false, flag=false;
 QString ip_connect = "";
 int m_x=0, m_y=0, mines=0;
 pMatriz** matrix;
@@ -21,10 +21,6 @@ MainWindow::MainWindow(QWidget *parent)
     ui->groupBoxConfig->setDisabled(true);
     ui->groupBoxGameB->hide();
     ui->groupBoxGameB->setDisabled(true);
-    ui->groupBoxGameI->hide();
-    ui->groupBoxGameI->setDisabled(true);
-    ui->groupBoxGameE->hide();
-    ui->groupBoxGameE->setDisabled(true);
 }
 
 MainWindow::~MainWindow()
@@ -48,16 +44,8 @@ void MainWindow::on_actionMultiplayer_triggered()
 
     printaCampo(matrix, m_x, m_y, 1, 1, mines);
 
-    if(dif==1){
-        ui->groupBoxGameB->show();
-        ui->groupBoxGameB->setDisabled(false);
-    }else if(dif==2){
-        ui->groupBoxGameI->show();
-        ui->groupBoxGameI->setDisabled(false);
-    }else{
-        ui->groupBoxGameE->show();
-        ui->groupBoxGameE->setDisabled(false);
-    }
+    ui->groupBoxGameB->show();
+    ui->groupBoxGameB->setDisabled(false);
 
     cout << "-Multiplayer Mode-" << endl;
     ui->groupBoxConfig->hide();
@@ -67,16 +55,10 @@ void MainWindow::on_actionMultiplayer_triggered()
 void MainWindow::on_actionSingleplayer_triggered()
 {
     printaCampo(matrix, m_x, m_y, 1, 1, mines);
-    if(dif==1){
-        ui->groupBoxGameB->show();
-        ui->groupBoxGameB->setDisabled(false);
-    }else if(dif==2){
-        ui->groupBoxGameI->show();
-        ui->groupBoxGameI->setDisabled(false);
-    }else{
-        ui->groupBoxGameE->show();
-        ui->groupBoxGameE->setDisabled(false);
-    }
+
+    ui->groupBoxGameB->show();
+    ui->groupBoxGameB->setDisabled(false);
+
     cout << "-Singleplayer Mode-" << endl;
     ui->groupBoxConfig->hide();
     ui->groupBoxConfig->setDisabled(true);
@@ -84,16 +66,9 @@ void MainWindow::on_actionSingleplayer_triggered()
 
 void MainWindow::on_actionConfiguration_triggered()
 {
-    if(dif==1){
-        ui->groupBoxGameB->hide();
-        ui->groupBoxGameB->setDisabled(true);
-    }else if(dif==2){
-        ui->groupBoxGameI->hide();
-        ui->groupBoxGameI->setDisabled(true);
-    }else{
-        ui->groupBoxGameE->hide();
-        ui->groupBoxGameE->setDisabled(true);
-    }
+    ui->groupBoxGameB->hide();
+    ui->groupBoxGameB->setDisabled(true);
+
     cout << "-Configuration Triggered-" << endl;
     ui->groupBoxConfig->show();
     ui->groupBoxConfig->setDisabled(false);
@@ -146,3 +121,33 @@ void MainWindow::on_radioConnect_clicked()
     bool_create = false;
 }
 
+void MainWindow::on_radioUnlock_clicked()
+{
+    flag=false;
+}
+
+void MainWindow::on_radioFlag_clicked()
+{
+    flag=true;
+}
+
+void MainWindow::on_pushButton_clicked()
+{
+    string x = ui->textX->toPlainText().toStdString();
+    string y = ui->textY->toPlainText().toStdString();
+    if(x=="" || y==""){
+        return;
+    }
+    int c_x = stoi(x), c_y = stoi(y);
+    int option;
+    if(flag==false){
+        option = 1;
+    }else{
+        option = 2;
+    }
+    decisaoJogador(matrix, m_x,m_y,mines,c_x,c_y,option);
+
+    string campo = printaCampo_str(matrix, m_x,m_y,0,mines);
+    QString game_campo = QString::fromStdString(campo);
+    ui->textGame->setText(game_campo);
+}

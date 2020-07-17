@@ -172,14 +172,14 @@ p, li { white-space: pre-wrap; }
    <widget class="QGroupBox" name="groupBoxGameB">
     <property name="geometry">
      <rect>
-      <x>430</x>
-      <y>30</y>
+      <x>440</x>
+      <y>40</y>
       <width>321</width>
-      <height>291</height>
+      <height>411</height>
      </rect>
     </property>
     <property name="title">
-     <string>GameBeginner</string>
+     <string>Game</string>
     </property>
     <widget class="QTextEdit" name="textGame">
      <property name="geometry">
@@ -191,32 +191,71 @@ p, li { white-space: pre-wrap; }
       </rect>
      </property>
     </widget>
-   </widget>
-   <widget class="QGroupBox" name="groupBoxGameI">
-    <property name="geometry">
-     <rect>
-      <x>260</x>
-      <y>280</y>
-      <width>120</width>
-      <height>80</height>
-     </rect>
-    </property>
-    <property name="title">
-     <string>GameIntermediate</string>
-    </property>
-   </widget>
-   <widget class="QGroupBox" name="groupBoxGameE">
-    <property name="geometry">
-     <rect>
-      <x>100</x>
-      <y>280</y>
-      <width>120</width>
-      <height>80</height>
-     </rect>
-    </property>
-    <property name="title">
-     <string>GameExpert</string>
-    </property>
+    <widget class="QWidget" name="">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>300</y>
+       <width>281</width>
+       <height>101</height>
+      </rect>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_2">
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_4">
+        <item>
+         <widget class="QLabel" name="label_x">
+          <property name="text">
+           <string>x</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_y">
+          <property name="text">
+           <string>y</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_3">
+        <item>
+         <widget class="QTextEdit" name="textX"/>
+        </item>
+        <item>
+         <widget class="QTextEdit" name="textY"/>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_2">
+        <item>
+         <widget class="QRadioButton" name="radioUnlock">
+          <property name="text">
+           <string>Unlock</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QRadioButton" name="radioFlag">
+          <property name="text">
+           <string>Flag</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pushButton">
+        <property name="text">
+         <string>Confirm</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">

@@ -32,6 +32,11 @@ private slots:
 
     void on_radioConnect_clicked();
 
+    void on_pushButton_clicked();
+
+    void on_radioUnlock_clicked();
+
+    void on_radioFlag_clicked();
 
 private:
     Ui::MainWindow *ui;

@@ -224,13 +224,4 @@ void desalocacao(pMatriz** matriz, int x){
     printf("Desalocado com sucesso.\n");
 }
 
-char getValueBut(pMatriz** matriz, int x, int y){
-    char num[2];
-    if(matriz[x][y].mina==true)
-        num[0] = '*';
-    else
-        num[0] = '0'+matriz[x][y].minas_ao_redor;
-    return num[0];
-}
-
 #endif // MINESWEEPER_H
