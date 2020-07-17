@@ -16,6 +16,10 @@ public:
     ~MainWindow();
     void dificulty_show();
     void dificulty_hide();
+    void game_begginer_hide();
+    void game_begginer_show();
+    void multiplayer_config_show();
+    void multiplayer_config_hide();
 
 private slots:
     void on_actionMultiplayer_triggered();
@@ -29,6 +33,10 @@ private slots:
     void on_radioBegginer_clicked();
 
     void on_radioExpert_clicked();
+
+    void on_radioCreate_clicked();
+
+    void on_radioConnect_clicked();
 
 private:
     Ui::MainWindow *ui;
