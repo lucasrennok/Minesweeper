@@ -15,7 +15,6 @@ typedef struct pontoMatriz{
 } pMatriz;
 
 bool campoResolvido(pMatriz** matriz, int x, int y);
-void configuracao(int* x, int* y, int* bombas);
 pMatriz** alocacao(int x, int y);
 void gerarCampo(pMatriz** matriz, int x, int y, int bombas);
 void printaCampo(pMatriz** matriz, int x, int y, int finalizado, float tempo, int bombas);
@@ -23,28 +22,6 @@ int bombasRestantesBandeira(pMatriz** matriz, int x, int y, int bombas);
 int decisaoJogador(pMatriz** matriz, int x, int y, int bombas);
 void limpaZerosArea(pMatriz** matriz, int x, int y, int linha, int coluna);
 void desalocacao(pMatriz** matriz, int x);
-
-void configuracao(int* x, int* y, int* bombas){
-    int dificuldade;
-    printf("Qual a dificuldade do campo minado?\n\n1-Facil\n2-Intermediario\n3-Dificil\nESCOLHA: ");
-    scanf("%d", &dificuldade);
-    switch(dificuldade){
-        default:
-        case 1:
-        *x=8;*y=8;*bombas=10;
-        printf("\n_Dificuldade Facil Selecionada_\n");
-        break;
-        case 2:
-        *x=16;*y=16;*bombas=40;
-        printf("\n_Dificuldade Intermediaria Selecionada_\n");
-        break;
-        case 3:
-        *x=16;*y=30;*bombas=99;
-        printf("\n_Dificuldade Dificil Selecionada_\n");
-        break;
-    }
-    printf("\n");
-}
 
 pMatriz** alocacao(int x, int y){
     printf("\nAlocando matriz...\n");
