@@ -32,6 +32,7 @@ private slots:
 
     void on_radioConnect_clicked();
 
+
 private:
     Ui::MainWindow *ui;
 };
