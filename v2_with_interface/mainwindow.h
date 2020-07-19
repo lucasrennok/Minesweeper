@@ -16,8 +16,6 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_actionMultiplayer_triggered();
-
     void on_actionSingleplayer_triggered();
 
     void on_actionConfiguration_triggered();
@@ -27,10 +25,6 @@ private slots:
     void on_radioBeginner_clicked();
 
     void on_radioExpert_clicked();
-
-    void on_radioCreate_clicked();
-
-    void on_radioConnect_clicked();
 
     void on_pushButton_clicked();
 

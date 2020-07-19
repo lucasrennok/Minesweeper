@@ -32,8 +32,8 @@
      <rect>
       <x>10</x>
       <y>30</y>
-      <width>401</width>
-      <height>211</height>
+      <width>321</width>
+      <height>101</height>
      </rect>
     </property>
     <property name="title">
@@ -95,85 +95,12 @@
       </item>
      </layout>
     </widget>
-    <widget class="QWidget" name="layoutWidget_9">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>110</y>
-       <width>381</width>
-       <height>81</height>
-      </rect>
-     </property>
-     <layout class="QVBoxLayout" name="verticalLayout_4">
-      <item>
-       <widget class="QLabel" name="labelMultiplayer">
-        <property name="enabled">
-         <bool>true</bool>
-        </property>
-        <property name="text">
-         <string>Multiplayer</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <layout class="QHBoxLayout" name="horizontalLayout_10">
-        <item>
-         <widget class="QRadioButton" name="radioCreate">
-          <property name="enabled">
-           <bool>true</bool>
-          </property>
-          <property name="text">
-           <string>Create a game</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_11">
-          <item>
-           <widget class="QRadioButton" name="radioConnect">
-            <property name="enabled">
-             <bool>true</bool>
-            </property>
-            <property name="text">
-             <string>Connect to a game</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QTextEdit" name="textIP">
-            <property name="minimumSize">
-             <size>
-              <width>150</width>
-              <height>20</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>150</width>
-              <height>20</height>
-             </size>
-            </property>
-            <property name="html">
-             <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
-       </layout>
-      </item>
-     </layout>
-    </widget>
    </widget>
    <widget class="QGroupBox" name="groupBoxGameB">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>20</y>
+      <x>350</x>
+      <y>30</y>
       <width>741</width>
       <height>511</height>
      </rect>
@@ -191,7 +118,7 @@ p, li { white-space: pre-wrap; }
       </rect>
      </property>
     </widget>
-    <widget class="QWidget" name="">
+    <widget class="QWidget" name="layoutWidget">
      <property name="geometry">
       <rect>
        <x>20</x>
@@ -269,19 +196,6 @@ p, li { white-space: pre-wrap; }
       <string>Result: </string>
      </property>
     </widget>
-    <widget class="QLabel" name="labelMulti">
-     <property name="geometry">
-      <rect>
-       <x>350</x>
-       <y>320</y>
-       <width>111</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Multiplayer: Nothing</string>
-     </property>
-    </widget>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -299,7 +213,6 @@ p, li { white-space: pre-wrap; }
     </property>
     <addaction name="actionConfiguration"/>
     <addaction name="actionSingleplayer"/>
-    <addaction name="actionMultiplayer"/>
    </widget>
    <addaction name="menuMinesweeper"/>
   </widget>

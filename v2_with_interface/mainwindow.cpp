@@ -17,10 +17,9 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    ui->groupBoxConfig->hide();
-    ui->groupBoxConfig->setDisabled(true);
     ui->groupBoxGameB->hide();
     ui->groupBoxGameB->setDisabled(true);
+    on_actionConfiguration_triggered();
 }
 
 MainWindow::~MainWindow()
@@ -31,35 +30,12 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::on_actionMultiplayer_triggered()
-{
-    if(bool_connect==false && bool_create==false){
-        cout << ">>nothing configured to multiplayer" << endl;
-    }else if(bool_connect==true){
-        ip_connect = ui->textIP->toPlainText();
-        cout << "Connecting to: " << ip_connect.toStdString() << endl;
-    }else{
-        cout << "Created game" << endl;
-    }
-
-    printaCampo(matrix, m_x, m_y, 1, 1, mines);
-
-    ui->groupBoxGameB->show();
-    ui->groupBoxGameB->setDisabled(false);
-    ui->labelMulti->show();
-
-    cout << "-Multiplayer Mode-" << endl;
-    ui->groupBoxConfig->hide();
-    ui->groupBoxConfig->setDisabled(true);
-}
-
 void MainWindow::on_actionSingleplayer_triggered()
 {
     printaCampo(matrix, m_x, m_y, 1, 1, mines);
 
     ui->groupBoxGameB->show();
     ui->groupBoxGameB->setDisabled(false);
-    ui->labelMulti->hide();
 
     cout << "-Singleplayer Mode-" << endl;
     ui->groupBoxConfig->hide();
@@ -107,20 +83,6 @@ void MainWindow::on_radioExpert_clicked()
     matrix = alocacao(m_x,m_y);
     cout << "Expert Selected" << endl;
     gerarCampo(matrix,m_x,m_y,mines);
-}
-
-void MainWindow::on_radioCreate_clicked()
-{
-    cout << "Create MULTIPLAYER" << endl;
-    bool_create = true;
-    bool_connect = false;
-}
-
-void MainWindow::on_radioConnect_clicked()
-{
-    cout << "Connect MULTIPLAYER" << endl;
-    bool_connect = true;
-    bool_create = false;
 }
 
 void MainWindow::on_radioUnlock_clicked()
