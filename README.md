@@ -5,6 +5,5 @@ Minesweeper with interface and without interface
 It's the version made in C. This version is singleplayer and is played in terminal or cmd.
 
 ## V2_with_interface
-It's the version made in C++. This version is singleplayer and is played at a GUI.
+It's the version made in C++. This version is singleplayer and is played at a GUI(have to use QTCreator to execute).
 
-I pretend to do a multiplayer mode(online only)... I studying this.
