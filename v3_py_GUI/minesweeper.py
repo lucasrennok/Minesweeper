@@ -91,7 +91,7 @@ class Minesweeper:
 			else:
 				str_aux = str(i)+"|"
 				print(str_aux, end="")
-			for j in range(j):
+			for j in range(self.y):
 				if(self.matrix[i][j].unlocked==True or finalizado>0):
 					if(self.matrix[i][j].mine==False):
 						if(self.matrix[i][j].mines_around!=-1):
