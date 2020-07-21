@@ -26,15 +26,22 @@ class Minesweeper:
 			print("\n_Expert Selected_\n")
 		print("\nGenerating the matrix...\n")
 		self.matrix = []
-		test = [pointMatrix(False,False,False,0)]*self.x
-		self.matrix += [test]*self.y
+		test = []
+		for i in range(self.x):
+			for j in range(self.y):
+				test+=[pointMatrix(False,False,False,0)]
+			self.matrix += [test]
+			test = []
 		m = self.mines
 		while(m>0):
-			i = randint(0,self.x)
-			j = randint(0,self.y)
+			i = randint(0,self.x-1)
+			j = randint(0,self.y-1)
+			print("Coord: ",i, j)
 			if(self.matrix[i][j].mine==False):
+				print("-Okay- Mine: ", m)
 				self.matrix[i][j].mine = True
 				m-=1
+		print("MINES OKAY. Calculing mines around the points...")
 		for i in range(self.x):
 			for j in range(self.y):
 				if(self.matrix[i][j].mine==True):

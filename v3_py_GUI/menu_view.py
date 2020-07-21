@@ -22,6 +22,8 @@ class menuScreen:
             dif = 'intermediate'
         elif(difExpert==True):
             dif = 'expert'
+        else:
+            dif = 'close'
         return [button, dif]
 
     def close(self):
