@@ -9,13 +9,13 @@ def main():
 
     if(option[0]=="single"):
         game_window = gameScreen(option[1])
-        game_window.close()
-        del game_window
     elif(option[0]=="multi"):
         pass #game_window = gameScreen(option[0], option[1])
     else:
         print("closing...")
         return None
+    game_window.close()
+    del game_window
 
 
 #starts here
