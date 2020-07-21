@@ -7,7 +7,7 @@ class pointMatrix:
 		self.flag = flag
 		self.mines_around = mines_around
 
-class minesweeper:
+class Minesweeper:
 	def __init__(self,dificuldade):
 		if(dificuldade==1):
 			self.x=8
