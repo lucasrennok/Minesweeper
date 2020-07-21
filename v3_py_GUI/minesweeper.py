@@ -75,13 +75,13 @@ class Minesweeper:
 
 	def printaCampo(self, finalizado):
 		str_aux = ""
-		print("\nMinesweeper\n", end="")
+		print("\nMinesweeper\n__ ", end="")
 		for j in range(self.y):
 			if(j<10):
-				str_aux = " 0"+int(j)
+				str_aux = " 0"+str(j)
 				print(str_aux, end="")
 			else:
-				str_aux = " "+int(j)
+				str_aux = " "+str(j)
 				print(str_aux, end="")
 		print("\n", end="")
 		for i in range(self.x):
@@ -95,14 +95,14 @@ class Minesweeper:
 				if(self.matrix[i][j].unlocked==True or finalizado>0):
 					if(self.matrix[i][j].mine==False):
 						if(self.matrix[i][j].mines_around!=-1):
-							str_aux = " "+self.matrix[i][j].mines_around+" "
+							str_aux = " "+str(self.matrix[i][j].mines_around)+" "
 							print(str_aux, end="")
 						else:
 							str_aux = " 0 "
 							print(str_aux, end="")
 					else:
 						str_aux = " * "
-						print(str_aux)
+						print(str_aux, end="")
 				elif(self.matrix[i][j].flag==True):
 					str_aux = " B "
 					print(str_aux, end="")

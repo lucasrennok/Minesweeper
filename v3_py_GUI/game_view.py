@@ -29,8 +29,17 @@ class gameScreen:
         layout+=matrix_game
         #window
         self.window = sg.Window("Minesweeper - Game").layout(layout)
+        self.play()
+
+    def play(self):
         #data
-        self.button, self.data = self.window.Read()
+        self.window.finalize()
+        while(1):
+            self.button, self.data = self.window.Read()
+            self.game.printaCampo(1)
+            if(self.game.solved()):
+                break
+            break
 
     def close(self):
         self.window.close()
