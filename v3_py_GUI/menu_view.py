@@ -2,6 +2,8 @@ import PySimpleGUI as sg
 
 class menuScreen:
     def __init__(self):
+        #theme
+        #sg.theme("Dark Brown")
         #layout
         layout = [
             [sg.Button("Singleplayer", key="single"), sg.Button("Multiplayer", key="multi")],

@@ -8,18 +8,18 @@ class pointMatrix:
 		self.mines_around = mines_around
 
 class Minesweeper:
-	def __init__(self,dificuldade):
-		if(dificuldade==1):
+	def __init__(self,difficulty):
+		if(difficulty==1):
 			self.x=8
 			self.y=8
 			self.mines=10
 			print("\n_Easy Selected_")
-		elif(dificuldade==2):
+		elif(difficulty==2):
 			self.x=16
 			self.y=16
 			self.mines=40 
 			print("\n_Intermediate Selected_")
-		elif(dificuldade==3):
+		elif(difficulty==3):
 			self.x=16
 			self.y=30
 			self.mines=99
@@ -72,7 +72,7 @@ class Minesweeper:
 							self.matrix[i][j].mines_around+=1
 		print("Matrix generated.\n")
 
-	def printaCampo(self, finalizado):
+	def printGame(self, finalized):
 		str_aux = ""
 		print("\nMinesweeper Game\n__ ", end="")
 		for j in range(self.y):
@@ -91,7 +91,7 @@ class Minesweeper:
 				str_aux = str(i)+"|"
 				print(str_aux, end="")
 			for j in range(self.y):
-				if(self.matrix[i][j].unlocked==True or finalizado>0):
+				if(self.matrix[i][j].unlocked==True or finalized>0):
 					if(self.matrix[i][j].mine==False):
 						if(self.matrix[i][j].mines_around!=-1):
 							str_aux = " "+str(self.matrix[i][j].mines_around)+" "
@@ -111,48 +111,48 @@ class Minesweeper:
 			print("\n", end="")
 		print("\n", end="")
 
-	def decisaoJogador(self, linha, coluna, escolha):
-		if(linha>=0 and linha<self.x and coluna>=0 and coluna<self.y):
-			if(escolha==2):
-				if(self.matrix[linha][coluna].unlocked==False):
-					if(self.matrix[linha][coluna].flag==False):
-						self.matrix[linha][coluna].flag=True
+	def playerDecision(self, row, column, opt):
+		if(row>=0 and row<self.x and column>=0 and column<self.y):
+			if(opt==2):
+				if(self.matrix[row][column].unlocked==False):
+					if(self.matrix[row][column].flag==False):
+						self.matrix[row][column].flag=True
 					else:
-						self.matrix[linha][coluna].flag=False
+						self.matrix[row][column].flag=False
 			else:
-				self.matrix[linha][coluna].unlocked=True
-				if(self.matrix[linha][coluna].mine==True):
+				self.matrix[row][column].unlocked=True
+				if(self.matrix[row][column].mine==True):
 					return 2
 				elif(self.solved()):
 					return 1
-				self.matrix[linha][coluna].flag=False
-				if(self.matrix[linha][coluna].mines_around==0):
-					self.cleanZeros(linha,coluna)
+				self.matrix[row][column].flag=False
+				if(self.matrix[row][column].mines_around==0):
+					self.cleanZeros(row,column)
 		else:
 			print("\n!__!Invalid Values!__!\n")
 		return 0
 
-	def cleanZeros(self,linha, coluna):
-		if(self.matrix[linha][coluna].mines_around==0):
-			self.matrix[linha][coluna].mines_around=-1
-			self.matrix[linha][coluna].unlocked=True
-			self.matrix[linha][coluna].flag=False
-			if(linha-1>=0):
-				self.matrix[linha-1][coluna].unlocked=True
-				if(self.matrix[linha-1][coluna].mines_around==0):
-					self.cleanZeros(linha-1,coluna)
-			if(coluna+1<self.y):
-				self.matrix[linha][coluna+1].unlocked=True
-				if(self.matrix[linha][coluna+1].mines_around==0):
-					self.cleanZeros(linha,coluna+1)
-			if(linha+1<self.x):
-				self.matrix[linha+1][coluna].unlocked=True
-				if(self.matrix[linha+1][coluna].mines_around==0):
-					self.cleanZeros(linha+1,coluna)
-			if(coluna-1>=0):
-				self.matrix[linha][coluna-1].unlocked=True
-				if(self.matrix[linha][coluna-1].mines_around==0):
-					self.cleanZeros(linha,coluna-1)
+	def cleanZeros(self,row, column):
+		if(self.matrix[row][column].mines_around==0):
+			self.matrix[row][column].mines_around=-1
+			self.matrix[row][column].unlocked=True
+			self.matrix[row][column].flag=False
+			if(row-1>=0):
+				self.matrix[row-1][column].unlocked=True
+				if(self.matrix[row-1][column].mines_around==0):
+					self.cleanZeros(row-1,column)
+			if(column+1<self.y):
+				self.matrix[row][column+1].unlocked=True
+				if(self.matrix[row][column+1].mines_around==0):
+					self.cleanZeros(row,column+1)
+			if(row+1<self.x):
+				self.matrix[row+1][column].unlocked=True
+				if(self.matrix[row+1][column].mines_around==0):
+					self.cleanZeros(row+1,column)
+			if(column-1>=0):
+				self.matrix[row][column-1].unlocked=True
+				if(self.matrix[row][column-1].mines_around==0):
+					self.cleanZeros(row,column-1)
 
 	def solved(self):
 		for i in range(self.x):
