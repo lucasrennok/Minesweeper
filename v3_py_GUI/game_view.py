@@ -62,11 +62,34 @@ class gameScreen:
     def unlock_button(self, button, row, column, option):
         if(option==1):
             if(self.game.matrix[row][column].mine==False):
-                self.window.FindElement(button).Update(str(self.game.matrix[row][column].mines_around))
+                if(self.game.matrix[row][column].mines_around!=-1):
+                    self.window.FindElement(button).Update(str(self.game.matrix[row][column].mines_around))
+                else:
+                    self.window.FindElement(button).Update("0")
+                    self.cleanZerosView()
+                    print("*Zeros Cleaned*")
             elif(self.game.matrix[row][column].mine==True):
                 self.window.FindElement(button).Update("*")
         elif(option==2):
             self.window.FindElement(button).Update("B")
+
+    def cleanZerosView(self):
+        cont = 1
+        while(cont<=((self.game.x)*(self.game.y))):
+            but_num=cont
+            row = 0
+            column = 0
+            while(but_num>self.game.y):
+                row=row+1
+                but_num=but_num-self.game.y
+            column=but_num-1
+            if(self.game.matrix[row][column].unlocked==True):
+                if(self.game.matrix[row][column].mines_around==-1):
+                    self.window.FindElement(str(cont)).Update("0")
+                else:
+                    self.window.FindElement(str(cont)).Update(str(self.game.matrix[row][column].mines_around))
+            cont+=1
+            
 
     def close(self):
         self.window.close()
