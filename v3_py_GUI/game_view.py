@@ -70,3 +70,22 @@ class gameScreen:
 
     def close(self):
         self.window.close()
+
+class resultScreen:
+    def __init__(self, won):
+        if(won==1):
+            layout = [
+                [sg.Text("You WON!")],
+                [sg.Quit()]
+            ]
+        elif(won==2):
+            layout = [
+                [sg.Text("You loose.")],
+                [sg.Quit()]
+            ]
+        self.window = sg.Window("Result of the Game").layout(layout)
+        self.window.finalize()
+        self.button, self.data = self.window.Read()
+        
+    def close(self):
+        self.window.close()

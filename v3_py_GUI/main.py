@@ -1,5 +1,6 @@
 from menu_view import menuScreen
 from game_view import gameScreen
+from game_view import resultScreen
 
 def main():
     menu_window = menuScreen()
@@ -18,12 +19,9 @@ def main():
     game_window.close()
     del game_window
 
-    if(result==2):
-        print("You lost")
-    elif(result==1):
-        print("You won")
-    else:
-        print("Nothing...")
+    result_window = resultScreen(result)
+    result_window.close()
+    del result_window
 
 
 #starts here
