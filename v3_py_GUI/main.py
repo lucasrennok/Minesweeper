@@ -16,12 +16,13 @@ def main():
     else:
         print("closing...")
         return None
-    game_window.close()
-    del game_window
 
     result_window = resultScreen(result)
     result_window.close()
     del result_window
+    
+    game_window.close()
+    del game_window
 
 
 #starts here

@@ -13,17 +13,17 @@ class Minesweeper:
 			self.x=8
 			self.y=8
 			self.mines=10
-			print("\n_Easy Selected_\n")
+			print("\n_Easy Selected_")
 		elif(dificuldade==2):
 			self.x=16
 			self.y=16
 			self.mines=40 
-			print("\n_Intermediate Selected_\n")
+			print("\n_Intermediate Selected_")
 		elif(dificuldade==3):
 			self.x=16
 			self.y=30
 			self.mines=99
-			print("\n_Expert Selected_\n")
+			print("\n_Expert Selected_")
 		print("\nGenerating the matrix...\n")
 		self.matrix = []
 		test = []
@@ -36,12 +36,11 @@ class Minesweeper:
 		while(m>0):
 			i = randint(0,self.x-1)
 			j = randint(0,self.y-1)
-			print("Coord: ",i, j)
 			if(self.matrix[i][j].mine==False):
-				print("-Okay- Mine: ", m)
+				print("-Okay Mine-")
 				self.matrix[i][j].mine = True
 				m-=1
-		print("MINES OKAY. Calculing mines around the points...")
+		print("MINES OKAY. Calculing mines around the points...\n")
 		for i in range(self.x):
 			for j in range(self.y):
 				if(self.matrix[i][j].mine==True):
@@ -75,7 +74,7 @@ class Minesweeper:
 
 	def printaCampo(self, finalizado):
 		str_aux = ""
-		print("\nMinesweeper\n__ ", end="")
+		print("\nMinesweeper Game\n__ ", end="")
 		for j in range(self.y):
 			if(j<10):
 				str_aux = " 0"+str(j)
