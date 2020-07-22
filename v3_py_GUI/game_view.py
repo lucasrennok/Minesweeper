@@ -38,9 +38,10 @@ class gameScreen:
             for j in range(self.game.y):
                 self.window[str(string_but)].bind("<Button-3>", '000')
                 string_but += 1
-        #self.game.printaCampo(1)
         while(1):
             button, self.data = self.window.Read()
+            if(button==None):
+                return None
             b_num = int(button)
             if(b_num<1000):
                 option = 1
@@ -50,7 +51,7 @@ class gameScreen:
                     row=row+1
                     b_num=b_num-self.game.y
                 column=b_num-1
-                situation = self.game.decisaoJogador(row, column, option)
+                situation = self.game.playerDecision(row, column, option)
                 self.unlock_button(button,row,column,option)
                 if(situation==1):
                     self.unlock_all_buttons()
@@ -60,7 +61,7 @@ class gameScreen:
                     self.unlock_all_buttons()
                     self.window.finalize()
                     return 2
-            else:
+            elif(b_num>=1000):
                 b_num=int(b_num/1000)
                 cont = b_num
                 row = 0
@@ -127,16 +128,22 @@ class resultScreen:
         if(won==1):
             layout = [
                 [sg.Text("You WON!")],
-                [sg.Quit()]
+                [sg.Quit(), sg.Button("Play Again", key="play")]
             ]
         elif(won==2):
             layout = [
                 [sg.Text("You loose.")],
-                [sg.Quit()]
+                [sg.Quit(), sg.Button("Play Again", key="play")]
             ]
         self.window = sg.Window("Result - Game").layout(layout)
         self.window.finalize()
+
+    def getData(self):
         self.button, self.data = self.window.Read()
-        
+        if(self.button=="play"):
+            return True
+        else:
+            return False
+
     def close(self):
         self.window.close()
