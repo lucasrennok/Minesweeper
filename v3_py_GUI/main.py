@@ -12,7 +12,7 @@ def main():
         game_window = gameScreen(option[1])
         result = game_window.play()
     elif(option[0]=="multi"):
-        pass #game_window = gameScreen(option[0], option[1])
+        return 1 #game_window = gameScreen(option[0], option[1])
     else:
         print("closing...")
         return None
