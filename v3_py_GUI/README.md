@@ -20,6 +20,10 @@ The coordinates have a number that represents how many bombs there are near that
 ## Executing
 You will have to choose the mode and the difficult of the game.
 
+Right click of the mouse unlock a place in the matrix(and a number or a mine appear)
+
+Left click of the mouse put a flag at a place in the matrix(and 'B' appear)
+
 ## Coming soon
 A multiplayer mode... maybe. 
 
