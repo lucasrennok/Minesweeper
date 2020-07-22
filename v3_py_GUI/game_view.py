@@ -120,6 +120,10 @@ class gameScreen:
                     self.window.FindElement(str(cont)).Update(str(self.game.matrix[row][column].mines_around))
             cont+=1
 
+    def create_connect(self,create_the_game, ip):
+        #connect here
+        return 1
+
     def close(self):
         self.window.close()
 

@@ -1,4 +1,5 @@
 from menu_view import menuScreen
+from menu_view import connectScreen
 from game_view import gameScreen
 from game_view import resultScreen
 
@@ -13,14 +14,22 @@ def main():
         if(option[0]=="single"):
             game_window = gameScreen(option[1])
             result = game_window.play()
-            if(result==None):
-                game_window.close()
-                del game_window
-                print("Closing...")
-                return None
         elif(option[0]=="multi"):
-            return 1 #game_window = gameScreen(option[0], option[1])
+            connect_window = connectScreen()
+            data_connection = connect_window.getData()
+            connect_window.close()
+            del connect_window
+            print(data_connection)
+            
+            game_window = gameScreen(option[1])
+            result = game_window.create_connect(data_connection[0], data_connection[1])
         else:
+            print("Closing...")
+            return None
+
+        if(result==None):
+            game_window.close()
+            del game_window
             print("Closing...")
             return None
 
