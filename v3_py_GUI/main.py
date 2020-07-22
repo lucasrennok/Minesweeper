@@ -9,6 +9,7 @@ def main():
 
     if(option[0]=="single"):
         game_window = gameScreen(option[1])
+        result = game_window.play()
     elif(option[0]=="multi"):
         pass #game_window = gameScreen(option[0], option[1])
     else:
@@ -16,6 +17,13 @@ def main():
         return None
     game_window.close()
     del game_window
+
+    if(result==2):
+        print("You lost")
+    elif(result==1):
+        print("You won")
+    else:
+        print("Nothing...")
 
 
 #starts here
