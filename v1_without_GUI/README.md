@@ -1,4 +1,4 @@
-# Minesweeper
+# Minesweeper V1
 Minesweeper in C (without GUI and singleplayer)
 
 To compile the program install gcc at your machine and write at terminal this command: gcc main.c -o executable
