@@ -51,12 +51,14 @@ class gameScreen:
             situation = self.game.decisaoJogador(row, column, option)
             self.unlock_button(button,row,column,option)
             if(situation==1):
+                self.unlock_all_buttons()
                 self.window.finalize()
-                time.sleep(3)
+                time.sleep(2)
                 return 1
             elif(situation==2):
+                self.unlock_all_buttons()
                 self.window.finalize()
-                time.sleep(3)
+                time.sleep(2)
                 return 2
 
     def unlock_button(self, button, row, column, option):
@@ -72,6 +74,20 @@ class gameScreen:
                 self.window.FindElement(button).Update("*")
         elif(option==2):
             self.window.FindElement(button).Update("B")
+
+    def unlock_all_buttons(self):
+        cont = 1
+        while(cont<=((self.game.x)*(self.game.y))):
+            but_num=cont
+            row = 0
+            column = 0
+            while(but_num>self.game.y):
+                row=row+1
+                but_num=but_num-self.game.y
+            column=but_num-1
+            if(self.game.matrix[row][column].unlocked==False):
+                self.unlock_button(str(cont), row, column, 1)
+            cont+=1
 
     def cleanZerosView(self):
         cont = 1
@@ -89,7 +105,6 @@ class gameScreen:
                 else:
                     self.window.FindElement(str(cont)).Update(str(self.game.matrix[row][column].mines_around))
             cont+=1
-            
 
     def close(self):
         self.window.close()
