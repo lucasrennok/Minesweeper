@@ -15,18 +15,16 @@ class gameScreen:
         print("Matrix: ",self.game.x,"x",self.game.y)
         #layout
         layout = [
-            [sg.Text("Game Minesweeper: "+difficulty)]
+            [sg.Text("Difficulty: "+difficulty)]
         ]
         matrix_game = []
         line = []
         string_but = 1
         for i in range(self.game.x):
             for j in range(self.game.y):
-                print(string_but," ", end="")
                 line+= [sg.Button("", key=str(string_but), size=(3,0), pad=(0,0))]
                 string_but += 1
             matrix_game+=[line]
-            print("")
             line = []
         layout+=matrix_game
         #window
@@ -35,31 +33,46 @@ class gameScreen:
     def play(self):
         #data
         self.window.finalize()
-        self.game.printaCampo(1)
+        string_but = 1
+        for i in range(self.game.x):
+            for j in range(self.game.y):
+                self.window[str(string_but)].bind("<Button-3>", '000')
+                string_but += 1
+        #self.game.printaCampo(1)
         while(1):
             button, self.data = self.window.Read()
-            option = 1
-            row = 0
-            column = 0
             b_num = int(button)
-            print("BUTTON: ",b_num)
-            while(b_num>self.game.y):
-                row=row+1
-                b_num=b_num-self.game.y
-            column=b_num-1
-            print("Coordinate: ", row, ",", column)
-            situation = self.game.decisaoJogador(row, column, option)
-            self.unlock_button(button,row,column,option)
-            if(situation==1):
-                self.unlock_all_buttons()
-                self.window.finalize()
-                time.sleep(2)
-                return 1
-            elif(situation==2):
-                self.unlock_all_buttons()
-                self.window.finalize()
-                time.sleep(2)
-                return 2
+            if(b_num<1000):
+                option = 1
+                row = 0
+                column = 0
+                while(b_num>self.game.y):
+                    row=row+1
+                    b_num=b_num-self.game.y
+                column=b_num-1
+                situation = self.game.decisaoJogador(row, column, option)
+                self.unlock_button(button,row,column,option)
+                if(situation==1):
+                    self.unlock_all_buttons()
+                    self.window.finalize()
+                    return 1
+                elif(situation==2):
+                    self.unlock_all_buttons()
+                    self.window.finalize()
+                    return 2
+            else:
+                b_num=int(b_num/1000)
+                cont = b_num
+                row = 0
+                column = 0
+                while(b_num>self.game.y):
+                    row=row+1
+                    b_num=b_num-self.game.y
+                column=b_num-1
+                if(self.window.FindElement(str(cont)).GetText()=="B"):
+                    self.window.FindElement(str(cont)).Update("")
+                elif(self.game.matrix[row][column].unlocked==False):
+                    self.window.FindElement(str(cont)).Update("B")
 
     def unlock_button(self, button, row, column, option):
         if(option==1):
@@ -121,7 +134,7 @@ class resultScreen:
                 [sg.Text("You loose.")],
                 [sg.Quit()]
             ]
-        self.window = sg.Window("Result of the Game").layout(layout)
+        self.window = sg.Window("Result - Game").layout(layout)
         self.window.finalize()
         self.button, self.data = self.window.Read()
         

@@ -8,7 +8,7 @@ class menuScreen:
             [sg.Radio("Easy", "dif", key="easy", default=True), sg.Radio("Intermediate", "dif", key="intermediate"), sg.Radio("Expert", "dif", key="expert")]
         ]
         #window
-        self.window = sg.Window("Menu").layout(layout)
+        self.window = sg.Window("Menu - Game").layout(layout)
         
     def getData(self):
         #data
