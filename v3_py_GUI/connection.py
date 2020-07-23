@@ -5,6 +5,7 @@ import time
 buffer = ""
 host_server = ""
 port = 1500
+client_socket = ""
 
 def receiveMesage():
     global client_socket
@@ -24,14 +25,16 @@ def receiveMesage():
         time.sleep(1)
         timer+=1
 
-client_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-t1 = threading.Thread(target=receiveMesage)
-t1.start()
+def connect_to_server():
+    global client_socket
+    client_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    t1 = threading.Thread(target=receiveMesage)
+    t1.start()
 
-while(1): #enquanto jogo está rodando
-    mesage = input("")    #recebe entrada do botão, envia pro server
-    client_socket.sendto(mesage.encode(),(host_server,port))
+    while(1): #enquanto jogo está rodando
+        mesage = input("")    #recebe entrada do botão, envia pro server
+        client_socket.sendto(mesage.encode(),(host_server,port))
 
-print("Closing Chat")
+    print("Closing")
 
-client_socket.close()
+    client_socket.close()

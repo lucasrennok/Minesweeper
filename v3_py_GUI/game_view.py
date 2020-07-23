@@ -1,6 +1,8 @@
 import PySimpleGUI as sg
 from minesweeper import pointMatrix
 from minesweeper import Minesweeper
+import create_game
+import connection
 import time
 
 class gameScreen:
