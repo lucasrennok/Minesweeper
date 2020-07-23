@@ -25,7 +25,7 @@ def receiveMesage():
         time.sleep(1)
         timer+=1
 
-def connect_to_server():
+def connect_to_server(game_view_aux):
     global client_socket
     client_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     t1 = threading.Thread(target=receiveMesage)

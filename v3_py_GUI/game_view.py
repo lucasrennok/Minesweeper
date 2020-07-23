@@ -32,7 +32,7 @@ class gameScreen:
         #window
         self.window = sg.Window("Minesweeper - Game").layout(layout)
 
-    def play(self):
+    def play(self,but_multiplayer):
         #data
         self.window.finalize()
         string_but = 1
@@ -41,7 +41,10 @@ class gameScreen:
                 self.window[str(string_but)].bind("<Button-3>", '000')
                 string_but += 1
         while(1):
-            button, self.data = self.window.Read()
+            if(but_multiplayer==None):
+                button, self.data = self.window.Read()
+            elif(but_multiplayer!=None):
+                button = but_multiplayer
             if(button==None):
                 return None
             b_num = int(button)
@@ -76,6 +79,8 @@ class gameScreen:
                     self.window.FindElement(str(cont)).Update("")
                 elif(self.game.matrix[row][column].unlocked==False):
                     self.window.FindElement(str(cont)).Update("B")
+            if(but_multiplayer!=None):
+                return 0
 
     def unlock_button(self, button, row, column, option):
         if(option==1):
@@ -124,6 +129,10 @@ class gameScreen:
 
     def create_connect(self,create_the_game, ip):
         #connect here
+        if(create_the_game==True):
+            create_game.create_server(self)
+        elif(create_game==False):
+            connection.connect_to_server(self)
         return 1
 
     def close(self):
