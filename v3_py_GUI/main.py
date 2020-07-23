@@ -13,7 +13,7 @@ def main():
 
         if(option[0]=="single"):
             game_window = gameScreen(option[1])
-            result = game_window.play()
+            result = game_window.play(None)
         elif(option[0]=="multi"):
             connect_window = connectScreen()
             data_connection = connect_window.getData()
