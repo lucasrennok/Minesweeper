@@ -23,6 +23,8 @@ def receive_data():
         mesage = receive.decode() 
         if(mesage==""):
             server_socket.sendto(buffer.encode(), client)
+        elif(mesage=="000"):
+            break
         else:
             result = game_view_aux_g.play(mesage)
         if(result>0):
@@ -42,6 +44,7 @@ def create_server(game_view_aux, ip):
 
     server_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     server_socket.bind(("", port))
+    print("criacao do socket e bind")
 
     t1 = threading.Thread(target=receive_data)
     t1.start()
@@ -54,8 +57,10 @@ def create_server(game_view_aux, ip):
 
     print("\nClosing in 5 secs...")
     time.sleep(5)
-    nothing = ""
+    nothing = "000"
     server_socket.sendto(nothing.encode(), (host_server,port))
+    print("sent mesage to close(2 secs)")
+    time.sleep(2)
     close = True
     server_socket.close()
     return result
