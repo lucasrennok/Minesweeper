@@ -1,6 +1,7 @@
 import socket
 import threading
 import time
+import game_view
 
 buffer = ""
 host_server = ""
@@ -17,7 +18,7 @@ def receive_data():
         else:
             pass    #tem que pegar esses dados e enviar pra matriz
 
-def create_server():
+def create_server(game_view_aux):
     global server_socket
     server_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     server_socket.bind(("", port))
