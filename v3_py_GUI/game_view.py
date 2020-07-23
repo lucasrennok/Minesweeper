@@ -82,6 +82,10 @@ class gameScreen:
             if(but_multiplayer!=None):
                 return 0
 
+    def get_button(self):
+        button, self.data = self.window.Read()
+        return button
+
     def unlock_button(self, button, row, column, option):
         if(option==1):
             if(self.game.matrix[row][column].mine==False):
@@ -130,10 +134,10 @@ class gameScreen:
     def create_connect(self,create_the_game, ip):
         #connect here
         if(create_the_game==True):
-            create_game.create_server(self)
+            return create_game.create_server(self, ip)
         elif(create_game==False):
-            connection.connect_to_server(self)
-        return 1
+            return connection.connect_to_server(self, ip)
+        return None
 
     def close(self):
         self.window.close()
