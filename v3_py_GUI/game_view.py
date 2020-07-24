@@ -6,7 +6,7 @@ import connection
 import time
 
 class gameScreen:
-    def __init__(self, difficulty):
+    def __init__(self, difficulty, type_game):
         if(difficulty=='easy'):
             dif = 1
         elif(difficulty=='intermediate'):
@@ -29,12 +29,16 @@ class gameScreen:
             matrix_game+=[line]
             line = []
         layout+=matrix_game
+        if(type_game=="multi"):
+            layout+=[[sg.Button("Update", key="upd")]]
         #window
         self.window = sg.Window("Minesweeper - Game").layout(layout)
 
     def play(self,but_multiplayer):
         #data
         self.window.finalize()
+        if(but_multiplayer=="upd"):
+            return 0
         string_but = 1
         for i in range(self.game.x):
             for j in range(self.game.y):

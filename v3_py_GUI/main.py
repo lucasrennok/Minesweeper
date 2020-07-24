@@ -12,7 +12,7 @@ def main():
         del menu_window
 
         if(option[0]=="single"):
-            game_window = gameScreen(option[1])
+            game_window = gameScreen(option[1], option[0])
             result = game_window.play(None)
         elif(option[0]=="multi"):
             connect_window = connectScreen()
@@ -21,7 +21,7 @@ def main():
             del connect_window
             print(data_connection)
             
-            game_window = gameScreen(option[1])
+            game_window = gameScreen(option[1], option[0])
             result = game_window.create_connect(data_connection[0], data_connection[1])
         else:
             print("Closing...")
