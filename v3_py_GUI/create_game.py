@@ -13,8 +13,10 @@ result = None
 close = False
 
 def generate_buffer(but):
-    buffer = ""
-    print(buffer)
+    global game_view_aux_g
+    global buffer
+    buffer = game_view_aux_g.game.matrix
+    print("Buffer generated.")
 
 def receive_data():
     global result
@@ -26,12 +28,13 @@ def receive_data():
         receive,client = server_socket.recvfrom(2048)
         mesage = receive.decode() 
         if(mesage==""):
-            server_socket.sendto(buffer.encode(), client)
+            server_socket.sendto(buffer, client)
         elif(mesage=="000"):
             break
         else:
-            generate_buffer(mesage)
+            print("Selecting button: ", mesage)
             result = game_view_aux_g.play(mesage)
+            generate_buffer(mesage)
         if(result>0):
             finalized=True
 
@@ -49,15 +52,15 @@ def create_server(game_view_aux, ip):
 
     server_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     server_socket.bind(("", port))
-    print("criacao do socket e bind")
+    print("Socket and Bind created")
 
     t1 = threading.Thread(target=receive_data)
     t1.start()
 
     while(finalized==False):   #enquanto jogo não acabar
         but_clicked = game_view_aux_g.get_button()
+        result = game_view_aux_g.play(but_clicked)
         generate_buffer(but_clicked)
-        result = game_view_aux_g.play(but_clicked) # le botao clicado e coloca no buffer e na matriz
         if(result>0):
             finalized=True
 
