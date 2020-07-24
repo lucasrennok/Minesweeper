@@ -11,6 +11,7 @@ finalized = False
 game_view_aux_g = ""
 result = None
 close = False
+vector = []
 
 def generate_buffer(but):
     global game_view_aux_g
@@ -24,6 +25,7 @@ def receive_data():
     global server_socket
     global close
     global game_view_aux_g
+    global vector
     mesage = ""
     while(finalized==False or close==False):   #enquanto jogo não acabar
         receive,client = server_socket.recvfrom(2048)
@@ -34,8 +36,7 @@ def receive_data():
             break
         else:
             print("Selecting button: ", mesage)
-            result = game_view_aux_g.play(mesage)
-            generate_buffer(mesage)
+            vector+=[mesage]
         if(result>0):
             finalized=True
 
@@ -47,6 +48,7 @@ def create_server(game_view_aux, ip):
     global port
     global host_server
     global close
+    global vector
     host_server = ip
     finalized=False
     game_view_aux_g = game_view_aux
@@ -64,6 +66,13 @@ def create_server(game_view_aux, ip):
         generate_buffer(but_clicked)
         if(result>0):
             finalized=True
+            break
+        for i in range(len(vector)):
+            result = game_view_aux_g.play(vector[i])
+            generate_buffer(but_clicked)
+            if(result>0):
+                finalized=True
+                break
 
     print("\nClosing in 5 secs...")
     time.sleep(5)
