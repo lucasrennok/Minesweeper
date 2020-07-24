@@ -2,7 +2,6 @@ import PySimpleGUI as sg
 from minesweeper import pointMatrix
 from minesweeper import Minesweeper
 import create_game
-import connection
 import time
 
 class gameScreen:
@@ -140,8 +139,9 @@ class gameScreen:
         #connect here
         if(create_the_game==True):
             return create_game.create_server(self, ip)
-        elif(create_game==False):
-            return connection.connect_to_server(self, ip)
+        elif(create_the_game==False):
+            return create_game.connect_to_server(self, ip)
+        print("Error in connection")
         return None
 
     def close(self):
