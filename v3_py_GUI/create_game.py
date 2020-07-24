@@ -20,7 +20,7 @@ def receive_data():
     global game_view_aux_g
     global vector
     mesage = ""
-    while(finalized==False or close==False):   #enquanto jogo não acabar
+    while(finalized==False or close==False):
         receive,client = server_socket.recvfrom(2048)
         mesage = receive.decode()
         if(mesage==""):
@@ -53,8 +53,8 @@ def create_server(game_view_aux, ip):
     t1 = threading.Thread(target=receive_data)
     t1.start()
 
-    while(finalized==False):   #enquanto jogo não acabar
-        but_clicked = game_view_aux_g.get_button() #get button ta bugando a thread
+    while(finalized==False):
+        but_clicked = game_view_aux_g.get_button()
         vector+=[but_clicked]
         for i in range(len(vector)):
             result = game_view_aux_g.play(vector[i])
@@ -73,3 +73,49 @@ def create_server(game_view_aux, ip):
     server_socket.close()
     return result
 
+def receive_vector():
+    global client_socket
+    global host_server
+    global port
+    global finalized
+    global vector
+    req = ""
+    timer = 0
+    while(finalized == False):
+        if(timer%5==0):
+            timer=0
+            client_socket.sendto(req.encode(), (host_server,port))
+            vector,server = client_socket.recvfrom(2048)
+            print(vector)
+        time.sleep(1)
+        timer+=1
+
+def connect_to_server(game_view_aux,ip):
+    global game_view_aux_g
+    global client_socket
+    global finalized
+    global host_server
+    global port
+    global vector
+    host_server = ip
+    game_view_aux_g = game_view_aux
+    client_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    print("Socket created")
+    t1 = threading.Thread(target=receive_vector)
+    t1.start()
+    print("Thread started")
+    result=0
+
+    while(finalized == False):
+        but_clicked = game_view_aux_g.get_button()
+        if(but_clicked!="upd"):
+            client_socket.sendto(but_clicked.encode(),(host_server,port))
+        for i in range(len(vector)):
+            result = game_view_aux_g.play(vector[i])
+            if(result>0):
+                finalized=True
+                break
+
+    print("Closing")
+    client_socket.close()
+    return result
