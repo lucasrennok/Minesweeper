@@ -44,6 +44,7 @@ class gameScreen:
             if(but_multiplayer==None):
                 button, self.data = self.window.Read()
             elif(but_multiplayer!=None):
+                print("TESTE: ",but_multiplayer)
                 button = but_multiplayer
             if(button==None):
                 return None

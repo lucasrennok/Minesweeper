@@ -23,10 +23,11 @@ def receive_data():
     global finalized
     global server_socket
     global close
+    global game_view_aux_g
     mesage = ""
     while(finalized==False or close==False):   #enquanto jogo não acabar
         receive,client = server_socket.recvfrom(2048)
-        mesage = receive.decode() 
+        mesage = receive.decode()
         if(mesage==""):
             server_socket.sendto(buffer, client)
         elif(mesage=="000"):
@@ -58,7 +59,7 @@ def create_server(game_view_aux, ip):
     t1.start()
 
     while(finalized==False):   #enquanto jogo não acabar
-        but_clicked = game_view_aux_g.get_button()
+        but_clicked = game_view_aux_g.get_button() #get button ta bugando a thread
         result = game_view_aux_g.play(but_clicked)
         generate_buffer(but_clicked)
         if(result>0):
