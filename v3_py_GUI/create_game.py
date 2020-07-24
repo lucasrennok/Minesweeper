@@ -12,6 +12,10 @@ game_view_aux_g = ""
 result = None
 close = False
 
+def generate_buffer(but):
+    buffer = ""
+    print(buffer)
+
 def receive_data():
     global result
     global finalized
@@ -26,6 +30,7 @@ def receive_data():
         elif(mesage=="000"):
             break
         else:
+            generate_buffer(mesage)
             result = game_view_aux_g.play(mesage)
         if(result>0):
             finalized=True
@@ -51,6 +56,7 @@ def create_server(game_view_aux, ip):
 
     while(finalized==False):   #enquanto jogo não acabar
         but_clicked = game_view_aux_g.get_button()
+        generate_buffer(but_clicked)
         result = game_view_aux_g.play(but_clicked) # le botao clicado e coloca no buffer e na matriz
         if(result>0):
             finalized=True
