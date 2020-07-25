@@ -9,6 +9,7 @@ class pointMatrix:
 
 class Minesweeper:
 	def __init__(self,difficulty):
+		self.dif = difficulty
 		if(difficulty==1):
 			self.x=8
 			self.y=8

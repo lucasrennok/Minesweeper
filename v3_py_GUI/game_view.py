@@ -146,6 +146,23 @@ class gameScreen:
 
     def set_game(self, new_game):
         self.game = new_game
+        #layout
+        layout = [
+            [sg.Text("Difficulty: "+str(self.game.dif))]
+        ]
+        matrix_game = []
+        line = []
+        string_but = 1
+        for i in range(self.game.x):
+            for j in range(self.game.y):
+                line+= [sg.Button("", key=str(string_but), size=(3,0), pad=(0,0))]
+                string_but += 1
+            matrix_game+=[line]
+            line = []
+        layout+=matrix_game
+        layout+=[[sg.Button("Update", key="upd")]]
+        #window
+        self.window = sg.Window("Minesweeper - Game").layout(layout)
 
     def close(self):
         self.window.close()
