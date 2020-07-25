@@ -29,7 +29,7 @@ def receive_data():
     global vector
     mesage = ""
     while(finalized==False or close==False):
-        receive,client = server_socket.recvfrom(2048)
+        receive,client = server_socket.recvfrom(11264)
         mesage = receive.decode()
         if(mesage==""):
             print("ARRAY SENT")
@@ -102,7 +102,7 @@ def receive_vector():
             timer=0
             client_socket.sendto(req.encode(), (host_server,port))
             print("REQ SENT")
-            arr,server = client_socket.recvfrom(2048)
+            arr,server = client_socket.recvfrom(11264)
             vector = pickle.loads(arr)
             print(vector)
         time.sleep(1)
@@ -123,7 +123,7 @@ def connect_to_server(game_view_aux,ip):
     print("Creating matrix...")
     req = "GAME"
     client_socket.sendto(req.encode(), (host_server,port))
-    buffer,server = client_socket.recvfrom(2048)
+    buffer,server = client_socket.recvfrom(11264)
 
     obj_game = pickle.loads(buffer)
     game_view_aux_g.set_game(obj_game)
