@@ -22,7 +22,7 @@ def receive_data():
     mesage = ""
     while(finalized==False or close==False):
         receive,client = server_socket.recvfrom(2048)
-        mesage = receive.decode() # problem here if it is an array
+        mesage = receive.decode()
         if(mesage==""):
             print("ARRAY SENT")
             arr = pickle.dumps(vector)
@@ -85,7 +85,7 @@ def receive_vector():
     req = ""
     timer = 0
     while(finalized == False):
-        if(timer%3==0):
+        if(timer%2==0):
             timer=0
             client_socket.sendto(req.encode(), (host_server,port))
             print("REQ SENT")
