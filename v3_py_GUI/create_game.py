@@ -12,6 +12,14 @@ result = 0
 close = False
 vector = []
 
+def put_in_vector(but):
+    global vector
+    for i in range(len(vector)):
+        if(vector[i]==but):
+            return 0
+    vector+=[but]
+    return 1
+
 def receive_data():
     global result
     global finalized
@@ -36,7 +44,7 @@ def receive_data():
             server_socket.sendto(game, client)
         else:
             print("Selecting button: ", mesage)
-            vector+=[mesage]
+            put_in_vector(mesage)
         if(result>0):
             finalized=True
 
@@ -63,7 +71,7 @@ def create_server(game_view_aux, ip):
     while(finalized==False):
         but_clicked = game_view_aux_g.get_button()
         if(but_clicked!="upd"):
-            vector+=[but_clicked]
+            put_in_vector(but_clicked)
         for i in range(len(vector)):
             result = game_view_aux_g.play(vector[i])
             if(result>0):
@@ -127,8 +135,6 @@ def connect_to_server(game_view_aux,ip):
     t1.start()
     print("Thread started")
     result=0
-
-
 
     while(finalized == False):
         but_clicked = game_view_aux_g.get_button()
