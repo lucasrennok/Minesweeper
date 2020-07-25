@@ -144,6 +144,9 @@ class gameScreen:
         print("Error in connection")
         return None
 
+    def set_game(self, new_game):
+        self.game = new_game
+
     def close(self):
         self.window.close()
 

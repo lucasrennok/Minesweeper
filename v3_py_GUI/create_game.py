@@ -28,7 +28,12 @@ def receive_data():
             arr = pickle.dumps(vector)
             server_socket.sendto(arr, client)
         elif(mesage=="000"):
+            print("BREAK RECEIVE")
             break
+        elif(mesage=="GAME"):
+            print("OBJ GAME SENT")
+            game = pickle.dumps(game_view_aux_g.game)
+            server_socket.sendto(game, client)
         else:
             print("Selecting button: ", mesage)
             vector+=[mesage]
@@ -65,8 +70,8 @@ def create_server(game_view_aux, ip):
                 finalized=True
                 break
 
-    print("\nClosing in 5 secs...")
-    time.sleep(5)
+    print("\nClosing in 3 secs...")
+    time.sleep(3)
     nothing = "000"
     server_socket.sendto(nothing.encode(), (host_server,port))
     print("sent mesage to close(2 secs)")
@@ -106,10 +111,24 @@ def connect_to_server(game_view_aux,ip):
     game_view_aux_g = game_view_aux
     client_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     print("Socket created")
+
+    print("Creating matrix...")
+    req = "GAME"
+    client_socket.sendto(req.encode(), (host_server,port))
+    buffer,server = client_socket.recvfrom(2048)
+
+    obj_game = pickle.loads(buffer)
+    game_view_aux_g.set_game(obj_game)
+    print("Game setted.")
+
+    time.sleep(1)
+
     t1 = threading.Thread(target=receive_vector)
     t1.start()
     print("Thread started")
     result=0
+
+
 
     while(finalized == False):
         but_clicked = game_view_aux_g.get_button()
