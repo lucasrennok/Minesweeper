@@ -24,7 +24,7 @@ It's the version made in C++. This version is singleplayer and is played at a GU
 How to use: Install QtCreator(I used 5.9.9) to use, and run it with the run button at the program.
 
 ## V3_py_GUI
-It's the version made in Python. This version is singleplayer and is played at a GUI(made with PySimpleGUI).
+It's the version made in Python. This version is singleplayer and multiplayer and is played at a GUI(made with PySimpleGUI).
 
 How to use: Install Python and install PySimpleGUI: *pip install PySimpleGUI*, after that *python main.py*
 

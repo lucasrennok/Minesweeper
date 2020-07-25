@@ -1,5 +1,5 @@
 # Minesweeper V3
-It's the version made in Python. This version is singleplayer and is played at a GUI(made with PySimpleGUI).
+It's the version made in Python. This version is singleplayer and multiplayer and is played at a GUI(made with PySimpleGUI).
 
 How to use: Install Python and install PySimpleGUI: *pip install PySimpleGUI*, after that *python main.py*
 
@@ -24,8 +24,8 @@ Right click of the mouse unlock a place in the matrix(and a number or a mine app
 
 Left click of the mouse put a flag at a place in the matrix(and 'B' appear)
 
-## Coming soon
-A multiplayer mode... maybe. 
+## Multiplayer
+After connecting to the server's ip or creating the game with your ip you can select the buttons to unlock. Be aware that if someone changes the matrix by clicking on a button you will have to click on Update Button.
 
 **Good game for you**
 **Good luck**
