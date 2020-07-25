@@ -1,4 +1,4 @@
-import socket
+import socket, pickle
 import threading
 import time
 import game_view
@@ -8,7 +8,7 @@ port = 1500
 server_socket = -1
 finalized = False
 game_view_aux_g = ""
-result = None
+result = 0
 close = False
 vector = []
 
@@ -22,9 +22,11 @@ def receive_data():
     mesage = ""
     while(finalized==False or close==False):
         receive,client = server_socket.recvfrom(2048)
-        mesage = receive.decode()
+        mesage = receive.decode() # problem here if it is an array
         if(mesage==""):
-            server_socket.sendto(vector, client)
+            print("ARRAY SENT")
+            arr = pickle.dumps(vector)
+            server_socket.sendto(arr, client)
         elif(mesage=="000"):
             break
         else:
@@ -55,7 +57,8 @@ def create_server(game_view_aux, ip):
 
     while(finalized==False):
         but_clicked = game_view_aux_g.get_button()
-        vector+=[but_clicked]
+        if(but_clicked!="upd"):
+            vector+=[but_clicked]
         for i in range(len(vector)):
             result = game_view_aux_g.play(vector[i])
             if(result>0):
@@ -82,10 +85,12 @@ def receive_vector():
     req = ""
     timer = 0
     while(finalized == False):
-        if(timer%5==0):
+        if(timer%3==0):
             timer=0
             client_socket.sendto(req.encode(), (host_server,port))
-            vector,server = client_socket.recvfrom(2048)
+            print("REQ SENT")
+            arr,server = client_socket.recvfrom(2048)
+            vector = pickle.loads(arr)
             print(vector)
         time.sleep(1)
         timer+=1
@@ -110,6 +115,7 @@ def connect_to_server(game_view_aux,ip):
         but_clicked = game_view_aux_g.get_button()
         if(but_clicked!="upd"):
             client_socket.sendto(but_clicked.encode(),(host_server,port))
+        print(vector)
         for i in range(len(vector)):
             result = game_view_aux_g.play(vector[i])
             if(result>0):
