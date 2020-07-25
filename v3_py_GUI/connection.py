@@ -4,7 +4,7 @@ import time
 import game_view
 
 host_server = ""
-port = 1500
+port = 1510
 server_socket = -1
 finalized = False
 game_view_aux_g = ""
