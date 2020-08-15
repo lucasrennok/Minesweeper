@@ -23,7 +23,7 @@ It's the version made in C. This version is singleplayer and is played in termin
 ## :green_book: V2_with_GUI
 It's the version made in C++. This version is singleplayer and is played at a GUI(have to use QTCreator to execute).
 
-![executing v2](/v2_with_GUI/images/executing.gif)
+<img src="/v2_with_GUI/images/executing.gif" width="600" height="400">
 
 > How to use: Install QtCreator(I used 5.9.9) to use, and run it with the run button at the program.
 
