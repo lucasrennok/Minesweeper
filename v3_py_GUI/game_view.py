@@ -1,4 +1,4 @@
-import PySimpleGUI as sg
+import FreeSimpleGUI as sg
 from minesweeper import pointMatrix
 from minesweeper import Minesweeper
 import connection

@@ -36,8 +36,8 @@ Resumo visual:
   números, `*`, `B`) e você joga digitando as coordenadas.
 - **v2** é uma **janela de verdade** (feita no Qt): o campo vira uma grade de
   botões em que você clica. Configurada e executada pelo Qt Creator.
-- **v3** também é uma **janela** (feita com PySimpleGUI), parecida com a v2, mas
-  em Python e com a vantagem de ter **multiplayer** pela rede.
+- **v3** também é uma **janela** (feita com FreeSimpleGUI), parecida com a v2,
+  mas em Python e com a vantagem de ter **multiplayer** pela rede.
 
 ---
 
@@ -91,10 +91,11 @@ make          # Windows com MSVC: nmake
 
 ## :green_book: v3 — Python (interface gráfica, com multiplayer)
 
-Feita em Python com **PySimpleGUI**. Dentro de `v3_py_GUI/`:
+Feita em Python com **FreeSimpleGUI** (fork livre e compatível do PySimpleGUI,
+que passou a ser pago). Dentro de `v3_py_GUI/`:
 
 ```sh
-pip install PySimpleGUI
+pip install FreeSimpleGUI
 python main.py
 ```
 
@@ -112,12 +113,10 @@ o outro jogador fizer uma jogada, clique em **Update** para atualizar a tela.
 
 ![executando v3](v3_py_GUI/images/executing.gif)
 
-> **Sobre o PySimpleGUI:** a biblioteca passou a ser paga depois que este
-> projeto foi feito, e as versões antigas saíram do PyPI. Para rodar hoje, use
-> a versão atual do PySimpleGUI (tem um tier gratuito com cadastro) ou instale o
-> fork livre **FreeSimpleGUI** (`pip install FreeSimpleGUI`) e troque, nos
-> arquivos `.py`, a linha `import PySimpleGUI as sg` por
-> `import FreeSimpleGUI as sg`.
+> Requer Python 3 com Tkinter (já vem na maioria das instalações; no Linux,
+> pode ser preciso `sudo apt install python3-tk`). O projeto usava o
+> PySimpleGUI, que virou pago; por isso agora usa o **FreeSimpleGUI**, que é um
+> fork livre e compatível.
 
 ---
 
